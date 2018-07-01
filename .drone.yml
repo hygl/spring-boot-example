@@ -1,9 +1,7 @@
 pipeline:
   build:
     image: maven:3.3.9-jdk-8
-    commands: 
-      mvn clean package -DskipTests=true
+    commands: mvn package -DskipTests=true
   test:
     image: maven:3.3.9-jdk-8
-    commands:
-      mvn install
+    commands: mvn install
