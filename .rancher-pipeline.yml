@@ -1,0 +1,14 @@
+stages:
+- name: compile
+  steps:
+  - runScriptConfig:
+      image: java:8
+      shellScript: mvn clean package
+- name: build image
+  steps:
+  - publishImageConfig:
+      dockerfilePath: ./Dockerfile
+      buildContext: .
+      tag: example/spring-boot-app:v1
+timeout: 60
+notification: {}
