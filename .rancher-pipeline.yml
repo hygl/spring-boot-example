@@ -1,9 +1,4 @@
 stages:
-- name: compile
-  steps:
-  - runScriptConfig:
-      image: java:8
-      shellScript: mvn clean package
 - name: build image
   steps:
   - publishImageConfig:
