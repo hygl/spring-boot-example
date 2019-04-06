@@ -5,5 +5,22 @@ stages:
       dockerfilePath: ./Dockerfile
       buildContext: .
       tag: example/spring-boot-app:v1
+- name: publish
+  steps:
+  - publishCatalogConfig:
+      path: ./charts/spring-boot-example
+      catalogTemplate: spring-boot-example
+      version: latest
+      gitUrl: https://github.com/hygl/charts.git
+      gitBranch: master
+      gitAuthor: Philipp Hügelmeyer
+      gitEmail: p.huegelmeyer@gmail.com
+    envFrom:
+    - sourceName: github-user
+      sourceKey: USERNAME
+      targetKey: USERNAME
+    - sourceName: github-user
+      sourceKey: PASSWORD
+      targetKey: PASSWORD
 timeout: 60
 notification: {}
