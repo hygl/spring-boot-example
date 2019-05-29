@@ -1,7 +1,7 @@
 FROM maven:3-jdk-11 as BUILD
 
 COPY . /usr/src/app
-RUN mvn --batch-mode -f /usr/src/app/pom.xml clean package
+RUN mvn --batch-mode -f /usr/src/app/pom.xml clean package -DskipTests=true
 
 FROM openjdk:11-jre-slim
 ENV SERVER_PORT 4357
