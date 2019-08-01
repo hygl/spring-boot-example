@@ -1,0 +1,10 @@
+FROM registry.redhat.io/ubi8/ubi
+RUN yum -y install --disableplugin=subscription-manager java-1.8.0-openjdk-devel\
+    &&  yum --disableplugin=subscription-manager clean all
+COPY . /usr/src/app
+WORKDIR /usr/src/app
+RUN ./mvnw clean package -DskipTests=true
+ENV SERVER_PORT 4357
+EXPOSE 4357
+USER 1001
+CMD ["/bin/bash", "-c", "find -type f -name 'demo*.jar' | xargs java -jar"]
