@@ -4,7 +4,7 @@ RUN yum -y install --disableplugin=subscription-manager java-1.8.0-openjdk-devel
 COPY . /usr/src/app
 WORKDIR /usr/src/app
 RUN ./mvnw clean package -DskipTests=true
-ENV SERVER_PORT 4357
-EXPOSE 4357
+ENV SERVER_PORT 8080
+EXPOSE 8080
 USER 1001
 CMD ["/bin/bash", "-c", "find -type f -name 'demo*.jar' | xargs java -jar"]
