@@ -19,10 +19,12 @@ volumes: [
     stage('Build') {
       container('maven') {
         sh "mvn package"
+        archiveArtifacts artifacts: 'target/*.zip', fingerprint: true
       }
     }
     stage('Create Docker images') {
       container('docker') {
+        copyArtifacts filter: 'target/*.jar', fingerprintArtifacts: true, projectName: '${JOB_NAME}', selector: specific('${BUILD_NUMBER}')        
         withCredentials([[$class: 'UsernamePasswordMultiBinding',
           credentialsId: 'dockerhub',
           usernameVariable: 'DOCKER_HUB_USER',
@@ -41,4 +43,5 @@ volumes: [
       }
     }
   }
+
 }
