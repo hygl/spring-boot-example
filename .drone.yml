@@ -12,4 +12,4 @@ steps:
   settings:
     username: hygl
     password: cloudnative
-    repo: hygl/spring-boot-example
+    repo: hygl/java-spring-boot2
