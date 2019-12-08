@@ -19,7 +19,7 @@ volumes: [
     stage('Build') {
       container('maven') {
         sh "mvn package"
-        archiveArtifacts artifacts: 'target/*.zip', fingerprint: true
+        archiveArtifacts artifacts: 'target/*.jar', fingerprint: true
       }
     }
     stage('Create Docker images') {
