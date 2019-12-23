@@ -12,16 +12,13 @@ volumes: [
     stage('Build') {
       container('maven') {
         sh "mvn clean package -DskipTests=true"
-        sh "mvn test"
-       
-      }
-    }
-    
-  }
-  post{
-       always {
-            junit 'target/surefire-reports/*.xml'
-             archiveArtifacts artifacts: 'target/*.jar', fingerprint: true
+        try{
+          sh "mvn test"
+        }finally{
+          junit 'target/surefire-reports/*.xml'
+          archiveArtifacts artifacts: 'target/*.jar', fingerprint: true
         }
-    }
+      }
+    } 
+  }
 }
