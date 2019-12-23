@@ -16,6 +16,11 @@ volumes: [
         archiveArtifacts artifacts: 'target/*.jar', fingerprint: true
       }
     }
+    post{
+       always {
+            junit 'target/surefire-reports/*.xml'
+        }
+    }
   }
 
 }
