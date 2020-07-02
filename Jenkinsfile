@@ -8,9 +8,10 @@ pipeline {
     }
     stage('test') {
       steps {
-        try {
-          sh './mvnw test'
-      } finally {
+        sh './mvnw  -Dmaven.test.failure.ignore=true test'
+      }
+      post {
+        sucess {
           junit 'target/surefire-reports/*.xml'
           archiveArtifacts artifacts: 'target/*.jar', fingerprint: true
         }
