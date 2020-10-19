@@ -22,6 +22,6 @@ public class HttpRequestTest {
 
     @Test
     public void greetingShouldReturnDefaultMessage() throws Exception {
-        this.mockMvc.perform(get("/hello")).andDo(print()).andExpect(status().isOk());//.andExpect(content("Hello"));
+        this.mockMvc.perform(get("/")).andDo(print()).andExpect(status().isOk());//.andExpect(content("Hello"));
     }
 }
