@@ -9,7 +9,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.3.4.RELEASE</version>
+		<version>2.4.2</version>
 	</parent>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -47,6 +47,11 @@
 			<version>1.2.32</version>
 		</dependency>
 		<dependency>
+			<groupId>io.dapr</groupId>
+			<artifactId>dapr-sdk-springboot</artifactId>
+			<version>0.10.0</version>
+		  </dependency>
+		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
@@ -65,14 +70,9 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 			<plugin>
-				<groupId>io.fabric8</groupId>
-				<artifactId>fabric8-maven-plugin</artifactId>
-				<version>4.3.1</version>
-			</plugin>
-			<plugin>
         		<groupId>com.google.cloud.tools</groupId>
         		<artifactId>jib-maven-plugin</artifactId>
-        		<version>1.8.0</version>
+        		<version>2.6.0</version>
         		<configuration>
           			<to>
             			<image>docker.io/hygl/spring-boot-2</image>
