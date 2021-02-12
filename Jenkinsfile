@@ -17,13 +17,10 @@ pipeline {
         }
       }
     }
-    stage('build'){
-      steps{
-        node{
-          checkout scm
-          def customImage = docker.build("hygl/spring-boot:${env.BUILD_ID}")
-          customImage.push()
-          customImage.push("latest")
+    stage('build') {
+      steps {
+       script {
+         dockerImage = docker.build "hygl/sping-boot:$BUILD_NUMBER"
         }
       }
     }
