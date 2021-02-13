@@ -19,8 +19,12 @@ pipeline {
     }
     stage('build') {
       steps {
-       script {
-         dockerImage = docker.build "hygl/sping-boot:$BUILD_NUMBER"
+        script {
+          docker.withRegistry('http://localhost:5000') {
+            def dockerImage = docker.build("hygl/sping-boot:$BUILD_NUMBER")
+            dockerImage.push()
+            dockerImage.push("latest")
+          }
         }
       }
     }
