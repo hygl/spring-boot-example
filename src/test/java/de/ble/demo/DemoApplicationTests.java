@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import de.ble.demo.todo.TodoController;
+import de.ble.demo.post.PostController;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -13,10 +13,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class DemoApplicationTests {
 	
 	@Autowired
-	private TodoController todoController;
+	private PostController postController;
 	@Test
 	public void contextLoads() {
-		assertThat(todoController).isNotNull();
+		assertThat(postController).isNotNull();
 	}
 
 }
