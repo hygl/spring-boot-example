@@ -2,4 +2,6 @@ Dockerfile
 draft.toml
 charts/
 work/
+#target/
+node_modules/
 .git/

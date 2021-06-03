@@ -1,7 +1,3 @@
-const React = require('react');
-const ReactDOM = require('react-dom'); 
-const client = require('./client'); 
-
 class App extends React.Component { 
 
 	constructor(props) {
@@ -10,11 +6,12 @@ class App extends React.Component {
 	}
 
 	componentDidMount() { 
-		client({method: 'GET', path: '/api/posts'}).done(response => {
-			this.setState({posts: response.entity._embedded.posts});
-		});
+		fetch("http://localhost:8080/api/posts").then(res => res.json())
+        .then(data => {
+		  this.setState({ posts: data._embedded.posts })
+        })
+        .catch(console.log)
 	}
-
 	render() { 
 		return (
 			<PostList posts={this.state.posts}/>
