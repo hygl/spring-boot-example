@@ -3,10 +3,22 @@ class App extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {posts: []};
+		// Register Sevice Worker
+		if ("serviceWorker" in navigator) {
+			navigator.serviceWorker
+			  .register("https://localhost:8080/js/sw.js", { scope: 'https://localhost:8080/' })
+			  .then(serviceWorker => {
+				console.log("Service Worker registered: ", serviceWorker);
+			  })
+			  .catch(error => {
+				console.error("Error registering the Service Worker: ", error);
+			  });
+		  }
+		  
 	}
 
 	componentDidMount() { 
-		fetch("http://localhost:8080/api/posts").then(res => res.json())
+		fetch("https://localhost:8080/api/posts").then(res => res.json())
         .then(data => {
 		  this.setState({ posts: data._embedded.posts })
         })
