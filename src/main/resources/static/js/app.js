@@ -6,9 +6,9 @@ class App extends React.Component {
 		// Register Sevice Worker
 		if ("serviceWorker" in navigator) {
 			navigator.serviceWorker
-			  .register("https://localhost:8080/js/sw.js", { scope: 'https://localhost:8080/' })
-			  .then(serviceWorker => {
-				console.log("Service Worker registered: ", serviceWorker);
+			  .register("./sw.js", { scope: '/' })
+			  .then(ServiceWorkerRegistration => {
+				console.log("Service Worker registered: ", ServiceWorkerRegistration);
 			  })
 			  .catch(error => {
 				console.error("Error registering the Service Worker: ", error);
@@ -18,7 +18,7 @@ class App extends React.Component {
 	}
 
 	componentDidMount() { 
-		fetch("https://localhost:8080/api/posts").then(res => res.json())
+		fetch("http://localhost:8080/api/posts").then(res => res.json())
         .then(data => {
 		  this.setState({ posts: data._embedded.posts })
         })

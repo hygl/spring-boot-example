@@ -3,6 +3,7 @@
     "short_name": "blog",
     "lang": "de",
     "start_url": "/",
+    "scope": "/",
     "display": "standalone",
     "theme_color": "#8fbcbb",
     "icons": [
