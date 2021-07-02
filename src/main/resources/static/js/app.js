@@ -10,7 +10,7 @@ class App extends React.Component {
 		super(props);
 		this.state = { posts: [] };
 		// Register Sevice Worker
-/*		if ("serviceWorker" in navigator) {
+		if ("serviceWorker" in navigator) {
 			navigator.serviceWorker
 				.register("./sw.js", { scope: '/' })
 				.then(ServiceWorkerRegistration => {
@@ -19,21 +19,12 @@ class App extends React.Component {
 				.catch(error => {
 					console.error("Error registering the Service Worker: ", error);
 				});
-		}*/
+		}
 
 	}
 
 	componentDidMount() {
 		// Simple POST request with a JSON body using fetch
-		const requestOptions = {
-			method: 'POST',
-			headers: { 'Content-Type': 'application/json' },
-			body: JSON.stringify({ title: 'React POST Title', text: 'Das ist ein Versuch mit React und POST' })
-		};
-		fetch('http://localhost:8080/post', requestOptions)
-			.then(response => response.json())
-			.then(data => this.setState({ posts: [data] }))
-			.catch(console.log)
 		fetch("http://localhost:8080/api/posts").then(res => res.json())
 			.then(data => {
 				this.setState({ posts: data._embedded.posts })
