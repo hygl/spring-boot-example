@@ -27,3 +27,4 @@ nbdist/
 .vscode/
 .sts4-cache/
 node_modules
+src/main/resources/static/built/bundle.js

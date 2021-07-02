@@ -1,5 +1,3 @@
-//importScripts("/js/localforage.min.js");
-
 self.addEventListener('install', function(event) {
   event.waitUntil(
     caches.open('v1')
@@ -7,7 +5,6 @@ self.addEventListener('install', function(event) {
 });
 
 self.addEventListener("fetch", function (event)  { 
-    //event.respondWith(localforage.getItem(event.request));
     event.waitUntil(update(event.request)); //TODO: refresh
   });
   
