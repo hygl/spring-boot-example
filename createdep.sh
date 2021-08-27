@@ -5,12 +5,19 @@ echo --- >> deployment.yaml
 kubectl create service clusterip $3 --tcp=8080:8080 --dry-run -o=yaml >> deployment.yaml
 echo --- >> deployment.yaml
 cat << EOF >> deployment.yaml
-apiVersion: networking.k8s.io/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: $3-ingress
 spec:
-  backend:
-    serviceName: $3
-    servicePort: 8080
+ rules:
+  - http:
+      paths:
+      - path: /$3
+        pathType: Prefix
+        backend:
+          service:
+            name: $3
+            port:
+              number: 8080
 EOF
