@@ -21,9 +21,10 @@ pipeline {
       steps {
         script {
           docker.withRegistry('http://localhost:5000') {
-            def dockerImage = docker.build("hygl/sping-boot:$BUILD_NUMBER")
+            def dockerImage = docker.build("hygl/spring-boot:$BUILD_NUMBER")
             dockerImage.push()
             dockerImage.push("latest")
+            sh "docker tag hygl/sping-boot:$BUILD_NUMBER docker.io/hygl/spring-boot:$BUILD_NUMBER"
           }
         }
       }
@@ -32,7 +33,7 @@ pipeline {
       steps {
         script {
           sh 'kubectl cluster-info'
-          sh "kind load docker-image localhost:5000/hygl/sping-boot:$BUILD_NUMBER"
+          sh "kind load docker-image docker.io/hygl/spring-boot:$BUILD_NUMBER"
           sh "./createdep.sh spring-boot $BUILD_NUMBER  spring-boot"
           sh 'kubectl apply -f deployment.yaml'
           archiveArtifacts artifacts: 'deployment.yaml', fingerprint: true
