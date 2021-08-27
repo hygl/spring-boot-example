@@ -3,12 +3,12 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-        sh './mvnw clean package -DskipTests=true'
+        sh 'mvn clean package -DskipTests=true'
       }
     }
     stage('test') {
       steps {
-        sh './mvnw  -Dmaven.test.failure.ignore=true test'
+        sh 'mvn  -Dmaven.test.failure.ignore=true test'
       }
       post {
         success {
