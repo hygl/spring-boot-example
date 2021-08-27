@@ -32,7 +32,7 @@ pipeline {
       steps {
         script {
           sh 'kubectl cluster-info'
-          sh "kind load docker-image hygl/sping-boot:$BUILD_NUMBER"
+          sh "kind load docker-image localhost:5000/hygl/sping-boot:$BUILD_NUMBER"
           sh "./createdep.sh spring-boot $BUILD_NUMBER  spring-boot"
           sh 'kubectl apply -f deployment.yaml'
           archiveArtifacts artifacts: 'deployment.yaml', fingerprint: true
