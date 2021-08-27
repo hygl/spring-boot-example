@@ -24,7 +24,7 @@ pipeline {
             def dockerImage = docker.build("hygl/spring-boot:$BUILD_NUMBER")
             dockerImage.push()
             dockerImage.push("latest")
-            sh "docker tag hygl/sping-boot:$BUILD_NUMBER docker.io/hygl/spring-boot:$BUILD_NUMBER"
+            sh "docker tag hygl/spring-boot:$BUILD_NUMBER docker.io/hygl/spring-boot:$BUILD_NUMBER"
           }
         }
       }
