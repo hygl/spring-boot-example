@@ -17,13 +17,14 @@ pipeline {
         }
       }
     }
-    stage('build') {
+    stage('container build') {
       steps {
         script {
           docker.withRegistry('http://localhost:5000') {
             def dockerImage = docker.build("hygl/sping-boot:$BUILD_NUMBER")
             dockerImage.push()
             dockerImage.push("latest")
+            sh 'kubectl cluster-info'
           }
         }
       }

@@ -15,7 +15,6 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>11</java.version>
-		<jkube.version>1.4.0</jkube.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -73,11 +72,6 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
-			<plugin>
-				<groupId>org.eclipse.jkube</groupId>
-				<artifactId>kubernetes-maven-plugin</artifactId>
-				<version>${jkube.version}</version>
 			</plugin>
 
 			<!-- tag::frontend-maven-plugin[] -->

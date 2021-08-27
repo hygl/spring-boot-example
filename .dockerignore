@@ -5,3 +5,4 @@ work/
 #target/
 node_modules/
 .git/
+.jarn/
