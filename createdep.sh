@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 docker tag $1:${2:-latest} docker.io/hygl/$1:${2:-latest}
-kubectl create deployment $3 --image=localhost:5000/hygl/$1:${2:-latest} --dry-run -o=yaml > deployment.yaml
+kubectl create deployment $3 --image=hygl/$1:${2:-latest} --dry-run -o=yaml > deployment.yaml
 echo --- >> deployment.yaml
 kubectl create service clusterip $3 --tcp=8080:8080 --dry-run -o=yaml >> deployment.yaml
 echo --- >> deployment.yaml
