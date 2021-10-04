@@ -41,4 +41,14 @@ public class ColorServiceBonn {
        
         return sTage.getWeekIncidence();
     }
+
+    private Double prozentIntensivBetten(){
+        esponseEntity<Employee[]> response =
+  restTemplate.getForEntity(
+  "https://europe-west3-brdata-corona.cloudfunctions.net/diviApi/query?area=NW&indicator=Bettenanteil&filetype=JSON",
+  Employee[].class);
+Employee[] employees = response.getBody();
+       
+        return sTage.getWeekIncidence();
+    }
 }
