@@ -6,5 +6,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface DayValuesRepository extends JpaRepository<Long,DayValues>{
     
-    public DayValues selectByDateAndOrt(Date date, String Ort);
+    public DayValues getByDateAndOrt(Date date, String Ort);
 }
