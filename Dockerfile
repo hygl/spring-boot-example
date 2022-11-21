@@ -1,4 +1,4 @@
-FROM eclipse-temurin:11-jdk
+FROM eclipse-temurin:17-jdk
 COPY target/*.jar /usr/src/app/app.jar
 WORKDIR /usr/src/app
 ENV SERVER_PORT 8080
