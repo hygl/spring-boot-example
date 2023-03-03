@@ -3,12 +3,12 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-        sh 'mvn clean package -DskipTests=true'
+        sh './mvnw clean package -DskipTests=true'
       }
     }
     stage('test') {
       steps {
-        sh 'mvn  -Dmaven.test.failure.ignore=true test'
+        sh './mvnw -Dmaven.test.failure.ignore=true test'
       }
       post {
         success {
@@ -17,7 +17,7 @@ pipeline {
         }
       }
     }
-    stage('container build') {
+    /**stage('container build') {
       steps {
         script {
           docker.withRegistry('http://localhost:5000') {
@@ -40,6 +40,6 @@ pipeline {
           sh 'rm deployment.yaml'
         }
       }
-    }
+    }**/
   }
 }
