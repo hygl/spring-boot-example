@@ -1,6 +1,7 @@
 package de.ble.demo.product;
 
 import java.util.Date;
+import java.util.Objects;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -16,15 +17,15 @@ public class Product {
     @Temporal(TemporalType.TIMESTAMP)
     private Date date;
 
+    public Product() {}
+
     public Product(String name, Long quantity, Date date) {
         this.name = name;
         this.quantity = quantity;
         this.date = date;
     }
 
-    Product() {
-    }
-
+    // Getters and Setters
     public Long getId() {
         return id;
     }
@@ -58,51 +59,28 @@ public class Product {
     }
 
     @Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + ((id == null) ? 0 : id.hashCode());
-        result = prime * result + ((name == null) ? 0 : name.hashCode());
-        result = prime * result + ((quantity == null) ? 0 : quantity.hashCode());
-        result = prime * result + ((date == null) ? 0 : date.hashCode());
-        return result;
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Product product = (Product) o;
+        return Objects.equals(id, product.id) &&
+               Objects.equals(name, product.name) &&
+               Objects.equals(quantity, product.quantity) &&
+               Objects.equals(date, product.date);
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (obj == null)
-            return false;
-        if (getClass() != obj.getClass())
-            return false;
-        Product other = (Product) obj;
-        if (id == null) {
-            if (other.id != null)
-                return false;
-        } else if (!id.equals(other.id))
-            return false;
-        if (name == null) {
-            if (other.name != null)
-                return false;
-        } else if (!name.equals(other.name))
-            return false;
-        if (quantity == null) {
-            if (other.quantity != null)
-                return false;
-        } else if (!quantity.equals(other.quantity))
-            return false;
-        if (date == null) {
-            if (other.date != null)
-                return false;
-        } else if (!date.equals(other.date))
-            return false;
-        return true;
+    public int hashCode() {
+        return Objects.hash(id, name, quantity, date);
     }
 
     @Override
     public String toString() {
-        return "Product [id=" + id + ", name=" + name + ", quantity=" + quantity + ", date=" + date + "]";
+        return "Product{" +
+               "id=" + id +
+               ", name='" + name + '\'' +
+               ", quantity=" + quantity +
+               ", date=" + date +
+               '}';
     }
-
 }
